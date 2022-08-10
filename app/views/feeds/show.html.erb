@@ -1,22 +1,24 @@
-<p id="notice"><%= notice %></p>
+<div class="css">
+    <div class="left">
+        <p>
+            <strong>画像:</strong>
+            <%= image_tag @feed.image.url, size: "100x100" %>
+        </p>
 
-<p>
-    <strong>Image:</strong>
-    <%= image_tag @feed.image.url %>
-</p>
+        <p>
+            <strong>文章:</strong>
+            <%= @feed.content %>
+        </p>
 
-<p>
-    <strong>content:</strong>
-    <%= @feed.content %>
-</p>
+        <% unless @feed.user_id == current_user.id %>
+            <% if @favorite.present? %>
+                <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %> |
+            <% else %>
+                <%= link_to 'お気に入りする', favorites_path(feed_id: @feed.id), method: :post, class: 'btn btn-primary' %> |
+            <% end %>
+        <% end %>
 
-<% unless @feed.user_id == current_user.id %>
-    <% if @favorite.present? %>
-        <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
-    <% else %>
-        <%= link_to 'お気に入りする', favorites_path(feed_id: @feed.id), method: :post, class: 'btn btn-primary' %>
-    <% end %>
-<% end %>
-
-<%= link_to 'Edit', edit_feed_path(@feed) %> |
-<%= link_to 'Back', feeds_path %>
+        <%= link_to '編集', edit_feed_path(@feed), class:"link_button" %> |
+        <%= link_to '戻る', feeds_path, class:"link_button" %>
+    </div>
+</div>

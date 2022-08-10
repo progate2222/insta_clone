@@ -1,10 +1,14 @@
-<h1><%= @user.name %>のページ</h1>
+<div class="css">
+    <div class="left">
+    <h1><%= @user.name %>のページ</h1>
 
-<p>メールアドレス: <%= @user.email %></p>
-<p>プロフィール写真: <%= image_tag @user.picture.url %></p>
+    <p>メールアドレス: <%= @user.email %></p>
+    <p>プロフィール写真: <%= image_tag @user.picture.url, size: "100x100"%></p>
 
-<%= link_to '編集', edit_user_path(@user) %> |
-<%= link_to '投稿する', new_feed_path %> |
-<%= link_to '投稿一覧へ', feeds_path %>
+    <%= link_to '編集', edit_user_path(@user), class:"link_button" %> |
+    <%= link_to '投稿する', new_feed_path, class:"link_button" %> |
+    <%= link_to '投稿一覧へ', feeds_path, class:"link_button" %>
+    </div>
+</div>
 
 

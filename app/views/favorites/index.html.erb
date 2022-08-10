@@ -1,31 +1,33 @@
-  <p id="notice"><%= notice %></p>
+<div class="css">
+    <div class="left">
+        <h1>お気に入り一覧</h1>
 
-  <h1>お気に入り一覧</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>word</th>
+                    <th>user</th>
+                    <th colspan="0"></th>
+                </tr>
+            </thead>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Image</th>
-        <th>word</th>
-        <th>user</th>
-        <th colspan="0"></th>
-      </tr>
-    </thead>
+            <tbody>
+                <% @favorites.each do |favorite| %>
+                    <tr>
+                        <td><%= image_tag favorite.image.url , size: "50x50" %></td>
+                        <td><%= favorite.content %></td>
+                        <td><%= favorite.user.name %></td>
+                        <td><%= link_to '詳しく見る', favorite, class:"button" %></td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
 
-    <tbody>
-      <% @favorites.each do |favorite| %>
-        <tr>
-          <td><%= image_tag favorite.image.url , size: "50x50" %></td>
-          <td><%= favorite.content %></td>
-          <td><%= favorite.user.name %></td>
-          <td><%= link_to 'Show', favorite %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+        <br>
+        <br>
 
-  <br>
-  <br>
-
-  <%= link_to 'Back', feeds_path %> |
-  <%= link_to 'New Feed', new_feed_path %>
+        <%= link_to '戻る', feeds_path, class:"link_button" %> |
+        <%= link_to '投稿する', new_feed_path, class:"link_button" %>
+    </div>
+</div>

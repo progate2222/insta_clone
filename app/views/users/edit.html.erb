@@ -1,26 +1,41 @@
-<h1>Editing User</h1>
+<div class="css">
+　<div class="left">
+        <h1>ユーザー情報を編集する</h1>
+        <br>
+        <br>
 
-<%= form_with(model: @user, local: true) do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+        <%= form_with(model: @user, local: true) do |f| %>
+            <%= f.label :name %>
+            <%= f.text_field :name, class:"form" %>
+            <br>
+            <br>
+            <%= f.label :email %>
+            <%= f.email_field :email, class:"form" %>
+            <br>
+            <br>
+            <%= f.label :picture %>
+            <%= image_tag @user.picture.url, size: "100x100" %>
+            <%= f.file_field :picture %>
+            <br>
+            <br>
+            <%= f.label :password %>
+            <%= f.password_field :password, class:"form" %>
+            <br>
+            <br>
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation, class:"form" %>
+            <br>
+            <br>
+            <br>
+            <%= f.submit "アカウントを編集する", class:"button" %>
+        <% end %>
+        <br>
+        <br>
+        <br>
+        <br>
 
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-
-    <%= f.label :picture %>
-    <%= image_tag @user.picture.url %>
-    <%= f.file_field :picture %>
-
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-    <br>
-    <%= f.submit "Editing my account" %>
-<% end %>
-
-<%= link_to 'Show', @user %>
-<%= link_to '投稿一覧へ', feeds_path %>
-
+        <%= link_to 'ユーザー情報を見る', @user, class:"link_button" %>
+        <%= link_to '投稿一覧へ', feeds_path, class:"link_button" %>
+    </div>
+</div>
 
