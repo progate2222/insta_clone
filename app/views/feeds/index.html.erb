@@ -1,37 +1,37 @@
-  <p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
 
-  <h1>Feeds</h1>
+<h1>Feeds</h1>
 
-  <table>
+<table>
     <thead>
-      <tr>
-        <th>Image</th>
-        <th>word</th>
-        <th>user</th>
-        <th colspan="0"></th>
-      </tr>
+        <tr>
+            <th>Image</th>
+            <th>word</th>
+            <th>user</th>
+            <th colspan="0"></th>
+        </tr>
     </thead>
 
     <tbody>
-      <% @feeds.each do |feed| %>
-        <tr>
-          <td><%= image_tag feed.image.url , size: "50x50" %></td>
-          <td><%= feed.content %></td>
-          <td><%= feed.user.name %></td>
-          <td><%= link_to 'Show', feed %></td>
-          <% if current_user.email == feed.user.email %>
-              <td><%= link_to 'Edit', edit_feed_path(feed) %></td>
-              <td><%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% else %>
-          <% end %>
-        </tr>
-      <% end %>
+        <% @feeds.each do |feed| %>
+            <tr>
+                <td><%= image_tag feed.image.url , size: "50x50" %></td>
+                <td><%= feed.content %></td>
+                <td><%= feed.user.name %></td>
+                <td><%= link_to 'Show', feed %></td>
+              <% if current_user.email == feed.user.email %>
+                  <td><%= link_to 'Edit', edit_feed_path(feed) %></td>
+                  <td><%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% else %>
+              <% end %>
+            </tr>
+        <% end %>
     </tbody>
-  </table>
+</table>
 
-  <br>
-  <br>
+<br>
+<br>
 
-  <%= link_to 'New Feed', new_feed_path %>
-  <%= link_to 'お気に入り一覧', favorites_path %>
+<%= link_to 'New Feed', new_feed_path %>
+<%= link_to 'お気に入り一覧', favorites_path %>
 
