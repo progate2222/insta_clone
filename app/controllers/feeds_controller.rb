@@ -64,7 +64,6 @@ class FeedsController < ApplicationController
   # DELETE /feeds/1 or /feeds/1.json
   def destroy
     @feed.destroy
-
     respond_to do |format|
       format.html { redirect_to feeds_url, notice: "Feed was successfully destroyed." }
       format.json { head :no_content }
