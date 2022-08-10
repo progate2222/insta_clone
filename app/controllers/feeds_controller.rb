@@ -8,6 +8,7 @@ class FeedsController < ApplicationController
 
   # GET /feeds/1 or /feeds/1.json
   def show
+    @favorite = current_user.favorites.find_by(feed_id: @feed.id)
   end
 
   # GET /feeds/new
@@ -18,9 +19,9 @@ class FeedsController < ApplicationController
       @feed = Feed.new
     end
   end
-  
+
   def confirm
-    @feed = Feed.new(feed_params)
+    @feed = current_user.feeds.build(feed_params)
   end
 
   # GET /feeds/1/edit
@@ -29,12 +30,12 @@ class FeedsController < ApplicationController
 
   # POST /feeds or /feeds.json
   def create
-    @feed = Feed.new(feed_params)
-
+    @feed = current_user.feeds.build(feed_params)
     respond_to do |format|
       if @feed.save
         format.html { redirect_to feed_url(@feed), notice: "Feed was successfully created." }
         format.json { render :show, status: :created, location: @feed }
+        ContactMailer.send_mail(@feed).deliver
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @feed.errors, status: :unprocessable_entity }
@@ -54,6 +55,7 @@ class FeedsController < ApplicationController
       end
     end
   end
+
 
   # DELETE /feeds/1 or /feeds/1.json
   def destroy
