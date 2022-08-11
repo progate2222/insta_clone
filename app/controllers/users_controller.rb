@@ -20,6 +20,11 @@ skip_before_action :login_required, only: [:new, :create]
 
     def edit
         @user = User.find(params[:id])
+        if current_user.id == @user.id
+        else
+            redirect_to user_path(@user.id)
+            flash[:notice] = '他のユーザーのプロフィールを編集することはできません。'
+        end
     end
 
     def update
