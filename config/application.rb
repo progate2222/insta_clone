@@ -27,5 +27,11 @@ module InstaClone
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.generators do |g|
+      g.assets     false
+      g.helper     false
+    end
+
   end
 end

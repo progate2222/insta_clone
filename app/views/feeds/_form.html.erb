@@ -4,12 +4,12 @@
         <%= image_tag(feed.image.url) if feed.image && feed.image.url  %>
         <%= form.file_field :image %>
     </div>
-　<br>
+    <br>
     <div class="content_word">
         <%= form.label :content %>
         <%= form.text_field :content %>
     </div>
-　<br>
+    <br>
     <div class="actions">
         <%= form.submit %>
     </div>
